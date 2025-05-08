@@ -13,19 +13,19 @@ type ORPCReactUtils = RouterUtils<RouterClient<typeof router>>
 export const ORPCContext = createContext<ORPCReactUtils | undefined>(undefined)
 
 export function useORPC(): ORPCReactUtils {
-	const orpc = use(ORPCContext)
-	if (!orpc) {
-		throw new Error('ORPCContext is not set up properly')
-	}
-	return orpc
+  const orpc = use(ORPCContext)
+  if (!orpc) {
+    throw new Error('ORPCContext is not set up properly')
+  }
+  return orpc
 }
 
 export function ORPCProvider({ children }: { children: React.ReactNode }) {
-	const queryClient = getQueryClient()
-	const [orpc] = useState(() => createORPCReactQueryUtils(client))
-	return (
-		<QueryClientProvider client={queryClient}>
-			<ORPCContext.Provider value={orpc}>{children}</ORPCContext.Provider>
-		</QueryClientProvider>
-	)
+  const queryClient = getQueryClient()
+  const [orpc] = useState(() => createORPCReactQueryUtils(client))
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ORPCContext.Provider value={orpc}>{children}</ORPCContext.Provider>
+    </QueryClientProvider>
+  )
 }

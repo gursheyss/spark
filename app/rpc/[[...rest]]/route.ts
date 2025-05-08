@@ -4,11 +4,11 @@ import { RPCHandler } from '@orpc/server/fetch'
 const handler = new RPCHandler(router)
 
 async function handleRequest(request: Request) {
-	const { response } = await handler.handle(request, {
-		prefix: '/rpc'
-	})
+  const { response } = await handler.handle(request, {
+    prefix: '/rpc'
+  })
 
-	return response ?? new Response('Not found', { status: 404 })
+  return response ?? new Response('Not found', { status: 404 })
 }
 
 export const GET = handleRequest
